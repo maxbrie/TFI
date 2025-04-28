@@ -265,9 +265,9 @@ executive_summary_content = '''
 
 # Data
 data = pd.DataFrame([
-    {"month": "May",       "salaries": 22917, "contractors": 3500,  "sales": 2000,  "platform": 2000,  "technology": 1000, "schools_onboard": 0,  "colleges_onboarded": 1, "mrr": 2083.33,  "arr": 25000,  "mnr": -29333.67},
-    {"month": "June",      "salaries": 22917, "contractors": 7000,  "sales": 5000,  "platform": 1000,  "technology": 1000, "schools_onboard": 0,  "colleges_onboarded": 1, "mrr": 6250,     "arr": 75000,  "mnr": -30667},
-    {"month": "July",      "salaries": 22917, "contractors": 4000,  "sales": 5000,  "platform": 2000,  "technology": 1000, "schools_onboard": 0,  "colleges_onboarded": 1, "mrr": 10416.67, "arr": 125000, "mnr": -24500.33},
+    {"month": "May",       "salaries": 22917, "contractors": 3500,  "sales": 2000,  "platform": 2000,  "technology": 1000, "schools_onboard": 1,  "colleges_onboarded": 0, "mrr": 2083.33,  "arr": 25000,  "mnr": -29333.67},
+    {"month": "June",      "salaries": 22917, "contractors": 7000,  "sales": 5000,  "platform": 1000,  "technology": 1000, "schools_onboard": 3,  "colleges_onboarded": 0, "mrr": 6250,     "arr": 75000,  "mnr": -30667},
+    {"month": "July",      "salaries": 22917, "contractors": 4000,  "sales": 5000,  "platform": 2000,  "technology": 1000, "schools_onboard": 5,  "colleges_onboarded": 0, "mrr": 10416.67, "arr": 125000, "mnr": -24500.33},
     {"month": "August",    "salaries": 22917, "contractors": 3000,  "sales": 3000,  "platform": 4000,  "technology": 1500, "schools_onboard": 6,  "colleges_onboarded": 0, "mrr": 12500,    "arr": 150000, "mnr": -21917},
     {"month": "September", "salaries": 22917, "contractors": 3000,  "sales": 3000,  "platform": 4000,  "technology": 2000, "schools_onboard": 8,  "colleges_onboarded": 0, "mrr": 16666.67, "arr": 200000, "mnr": -18250.33},
     {"month": "October",   "salaries": 22917, "contractors": 2500,  "sales": 4000,  "platform": 2500,  "technology": 1500, "schools_onboard": 10, "colleges_onboarded": 1, "mrr": 29166.67, "arr": 350000, "mnr": -4250.33},
@@ -280,7 +280,7 @@ data["month_idx"] = range(len(data))
 
 # Page heading and tabs
 st.markdown("<h1>TuTechy Pre-Seed Raise Dashboard</h1>", unsafe_allow_html=True)
-tabs = st.tabs(["📊 Summary", "💰 Fundraise Breakdown", "📅 Nine-Month Overview", "📈 All Graphs"])
+tabs = st.tabs(["📊 Summary", "💰 Fundraise Breakdown", "📅 Nine-Month Overview", "📈 All Graphs", "🛡️ SAFE"])
 
 # Summary Tab
 with tabs[0]:
@@ -372,6 +372,7 @@ with tabs[1]:
 # ──────────────────  N I N E  –  M O N T H   O V E R V I E W  ──────────────────
 with tabs[2]:
     st.markdown("<h2>Nine-Month Overview</h2>", unsafe_allow_html=True)
+    # ... (existing code for the 9-month overview)
 
     # don’t touch the original `data` used by graphs
     df_raw = data.copy()
@@ -438,7 +439,7 @@ with tabs[2]:
                 <div style="background:#1d1d1d;border-radius:10px;padding:22px 28px;
                             box-shadow:0 4px 12px rgba(0,0,0,.35);margin-top:58px;">
                     <h5 style="margin:0 0 14px;color:#F0F0F0;">
-                        {title} · <span style="color:#AAAAAA">Goals</span>
+                        {title}
                     </h5>
                     <ul style="line-height:1.55;margin:0;">
                         {''.join(f"<li style='margin-bottom:6px;'>{g}</li>" for g in goals)}
@@ -448,43 +449,54 @@ with tabs[2]:
 
     # ---------- show all three quarters ---------------------------------------
     quarter("May – July", q1, [
-        "MVP live & first paying pilots under way",
-        "Core full-time tech team hired (at $55 k/yr)",
-        "Onboard 3-5 schools to validate value prop"
+        "Convert LOIs into first paying customers by closing pilots and pushing early adoption.",
+        "Hit flagship education conferences hard to maximize exposure and teacher relationships.",
+        "Define and pressure-test a scalable sales strategy, including initial sales hires.",
+        "Refine and optimize the product based on early customer feedback to strengthen product-market fit."
     ])
 
     quarter("August – October", q2, [
-        "Expand to ≥10 schools across NC / SC / TN / GA",
-        "Work flagship edu-conferences to 4× the sales pipeline",
-        "Harden infra & UX for larger district roll-outs"
+        "Expand college footprint by onboarding initial college customers and refining outreach.",
+        "Maintain an active, consistent sales cycle — adding schools and colleges monthly.",
+        "Implement version two features of TuTechy",
+        "Streamline network operations and support systems to scale efficiently."
     ])
 
     quarter("November – January", q3, [
-        "MRR ≥ $50 k · ARR ≥ $600 k",
-        "16 schools & 2 colleges fully live",
-        "Consistently positive monthly net-revenue"
+        "Major onboarding push to bring 16+ schools and 2+ colleges fully live on TuTechy.",
+        "Achieve and maintain positive net revenue month-over-month.",
+        "Prepare platform for full 2nd semester deployment, setting up for massive spring growth.",
+        "Lay strategic foundation for 2026 white-label expansion into business and enterprise markets."
     ])
+
+    # Expense Line Descriptions Box (only on this page)
+    st.markdown("""
+    <div style="background:#1d1d1d;border-radius:10px;padding:22px 28px;box-shadow:0 4px 12px rgba(0,0,0,.35);margin-top:36px;max-width:500px;">
+        <h4 style="margin-bottom:16px;color:#F0F0F0;">Expense Line Descriptions</h4>
+        <ul style="line-height:1.7;margin:0 0 0 0;padding-left:18px;">
+            <li><b>Salaries</b><br>Payments for full-time employees across engineering, sales, operations, and support functions.</li>
+            <li><b>Contractors</b><br>Fees paid to part-time specialists or freelance teams for project-based work (e.g., marketing, development, design).</li>
+            <li><b>Sales</b><br>Direct expenses to drive revenue growth, including travel, conferences, CRM software, sales enablement tools, and commissions.</li>
+            <li><b>Platform</b><br>Costs to host, maintain, and continuously upgrade the TuTechy product for users (e.g., servers, APIs, core platform services).</li>
+            <li><b>Technology</b><br>Investments in internal infrastructure upgrades, security improvements, and building tools that power company operations and scale.</li>
+        </ul>
+    </div>
+    """, unsafe_allow_html=True)
 # ───────────────────────────────────────────────────────────────────────────────
 # All Graphs Tab
 with tabs[3]:
     st.markdown("<h2>Key Performance Graphs</h2>", unsafe_allow_html=True)
 
-    # ── Revenue Growth ───────────────────────────────────────────────────────
-    st.markdown("<h3>Revenue Growth</h3>", unsafe_allow_html=True)
-    rev_fig = make_subplots(specs=[[{"secondary_y": True}]])
-    rev_fig.add_trace(
-        go.Scatter(x=data.month, y=data.mrr,
-                   name="MRR", line=dict(color="#4286F4", width=3)),
-        secondary_y=False)
-    rev_fig.add_trace(
+    # ── ARR Growth ───────────────────────────────────────────────────────────
+    st.markdown("<h3>ARR Growth</h3>", unsafe_allow_html=True)
+    arr_fig = make_subplots(specs=[[{"secondary_y": True}]])
+    arr_fig.add_trace(
         go.Scatter(x=data.month, y=data.arr,
-                   name="ARR", line=dict(color="#00BFA5", width=3)),
-        secondary_y=True)
-
-    rev_fig.update_layout(
-        title="Revenue Growth Over Time",
-        hovermode="x unified",
+                   name="ARR", line=dict(color="#4286F4", width=3)),
+        secondary_y=False)
+    arr_fig.update_layout(
         height=420,
+        title="Growth over first nine months",
         title_font=dict(size=20, color="white"),
         legend_font=dict(size=15, color="white"),
         margin=dict(t=70, b=50, l=50, r=50),
@@ -492,12 +504,10 @@ with tabs[3]:
         plot_bgcolor="#1a1a1a",
         font=dict(color="white")
     )
-    rev_fig.update_xaxes(tickfont=dict(size=13), gridcolor="#333")
-    rev_fig.update_yaxes(title_text="MRR ($)", secondary_y=False,
+    arr_fig.update_xaxes(tickfont=dict(size=13), gridcolor="#333")
+    arr_fig.update_yaxes(title_text="ARR ($)", secondary_y=False,
                          tickprefix="$", tickfont=dict(size=13), gridcolor="#333")
-    rev_fig.update_yaxes(title_text="ARR ($)", secondary_y=True,
-                         tickprefix="$", tickfont=dict(size=13))
-    st.plotly_chart(rev_fig, use_container_width=True)
+    st.plotly_chart(arr_fig, use_container_width=True)
 
     # ── Expense Breakdown ────────────────────────────────────────────────────
     st.markdown("<h3>Expense Breakdown</h3>", unsafe_allow_html=True)
@@ -523,3 +533,19 @@ with tabs[3]:
     exp_fig.update_yaxes(title_text="Amount ($)", tickprefix="$",
                          tickfont=dict(size=13), gridcolor="#333")
     st.plotly_chart(exp_fig, use_container_width=True)
+
+# Safe Tab
+with tabs[4]:
+    st.markdown("<h2>SAFE</h2>", unsafe_allow_html=True)
+    st.markdown("""
+    <ul style='font-size:1.15rem;line-height:1.7;'>
+        <li>We are raising using a SAFE (Simple Agreement for Future Equity).</li>
+        <li>A SAFE is an investor-friendly agreement that allows you to invest in the company now without having to determine a valuation today.</li>
+        <li>The SAFE has a $6 million valuation cap.</li>
+        <li>When we raise our first priced round (traditional equity financing), your SAFE investment will convert into shares based on the $6 million cap, regardless of the new valuation at that time.</li>
+        <li>This structure simplifies the fundraising process, avoids complicated negotiations early on, and allows early investors to benefit from future growth.</li>
+    </ul>
+    <p style='font-size:1.15rem;line-height:1.7;'><b>In short:</b><br>
+    You invest now, and when we raise a larger round later, you will own a percentage of the company based on a favorable valuation.
+    </p>
+    """, unsafe_allow_html=True)
